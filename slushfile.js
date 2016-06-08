@@ -8,7 +8,9 @@ var gulp = require('gulp'),
 
 gulp.task('default', function (done) {
   inquirer.prompt([
-    {type: 'input', name: 'name', message: 'Give your module a name', default: gulp.args.join(' ')}, // Get app name from arguments by default
+    {type: 'input', name: 'name', message: 'Give your module a name', default: gulp.args[0]}, // Get app name from arguments by default
+    {type: 'input', name: 'contName', message: 'Give your controller a name', default: (typeof gulp.args[1] != 'undefined') ? gulp.args[1] : gulp.args[0]}, // Get app name from arguments by default
+    {type: 'list', name: 'type', message: 'What would you like to generate?', default: 'controller', choices: ['controller', 'module']},
     {type: 'confirm', name: 'moveon', message: 'Continue?', default: 'y'}
   ],
   function (answers) {
@@ -26,29 +28,64 @@ gulp.task('default', function (done) {
     });
     //console.log(answers);
 
-    gulp.src(__dirname + '/templates/module/**/*')  // Note use of __dirname to be relative to generator
-      .pipe(template(answers))                 // Lodash template support
-      .pipe(rename(function(file) {
-          // if root controller
-          if (file.dirname === '.' && file.extname === '.js') {
-              file.basename = answers.name;
-          }
-          // if script
-          if (file.dirname === 'scripts' && file.extname === '.js') {
-              file.basename = answers.nameCap+'Controller';
-          }
-          // if view
-          if (file.dirname === 'views' && file.extname === '.html') {
-              file.basename = answers.name;
-          }
-          //console.log(file);
-      }))
-      .pipe(conflict('./'+answers.name))                    // Confirms overwrites on file conflicts
-      .pipe(gulp.dest('./'+answers.name))                   // Without __dirname here = relative to cwd
-      .pipe(install())                         // Run `bower install` and/or `npm install` if necessary
-      .on('end', function () {
-        done();                                // Finished!
-      })
-      .resume();
-  });
+    if(answers.type === 'controller') {
+
+      gulp.src([
+        //__dirname + '/templates/module/scripts/*.js',
+        //__dirname + '/templates/module/views/*.html'
+        __dirname + '/templates/module/**',
+        '!'+__dirname + '/templates/module/module.js',
+      ])  // Note use of __dirname to be relative to generator
+        .pipe(template(answers))                 // Lodash template support
+        .pipe(rename(function(file) {
+            // if script
+            if (file.dirname === 'scripts' && file.extname === '.js') {
+                file.basename = answers.contNameCap+'Controller';
+            }
+            // if view
+            if (file.dirname === 'views' && file.extname === '.html') {
+                file.basename = answers.contName;
+            }
+        }))
+        .pipe(conflict('./'+answers.name), { cwd: '.' })                    // Confirms overwrites on file conflicts
+        .pipe(gulp.dest('./'+answers.name), { cwd: '.' })                   // Without __dirname here = relative to cwd
+        .pipe(install())                         // Run `bower install` and/or `npm install` if necessary
+        .on('end', function () {
+          done();                                // Finished!
+        })
+        .resume();
+
+
+    }
+
+    if(answers.type === 'module') {
+
+      gulp.src(__dirname + '/templates/module/**/*')  // Note use of __dirname to be relative to generator
+        .pipe(template(answers))                 // Lodash template support
+        .pipe(rename(function(file) {
+            // if root controller
+            if (file.dirname === '.' && file.extname === '.js') {
+                file.basename = answers.name;
+            }
+            // if script
+            if (file.dirname === 'scripts' && file.extname === '.js') {
+                file.basename = answers.contName+'Controller';
+            }
+            // if view
+            if (file.dirname === 'views' && file.extname === '.html') {
+                file.basename = answers.name;
+            }
+            //console.log(file);
+        }))
+        .pipe(conflict('./'+answers.name))                    // Confirms overwrites on file conflicts
+        .pipe(gulp.dest('./'+answers.name))                   // Without __dirname here = relative to cwd
+        .pipe(install())                         // Run `bower install` and/or `npm install` if necessary
+        .on('end', function () {
+          done();                                // Finished!
+        })
+        .resume();
+
+      }
+
+    });
 });
