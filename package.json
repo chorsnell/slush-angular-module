@@ -1,18 +1,18 @@
 {
-    "name": "slush-slush-angular-module",
+    "name": "slush-angular-module",
     "description": "",
     "version": "0.1.0",
-    "homepage": "https://github.com/poppahorse/slush-slush-angular-module",
+    "homepage": "https://github.com/poppahorse/slush-angular-module",
     "author": {
         "name": "chris",
         "email": "chris.horsnell@meloncreative.co.uk"
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/poppahorse/slush-slush-angular-module.git"
+        "url": "git://github.com/poppahorse/slush-angular-module.git"
     },
     "bugs": {
-        "url": "https://github.com/poppahorse/slush-slush-angular-module/issues"
+        "url": "https://github.com/poppahorse/slush-angular-module/issues"
     },
     "license": "MIT",
     "main": "slushfile.js",
