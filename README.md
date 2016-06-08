@@ -1,28 +1,26 @@
-# Slush Slush-angular-module [![Build Status](https://secure.travis-ci.org/poppahorse/slush-slush-angular-module.png?branch=master)](https://travis-ci.org/poppahorse/slush-slush-angular-module) [![NPM version](https://badge-me.herokuapp.com/api/npm/slush-slush-angular-module.png)](http://badges.enytc.com/for/npm/slush-slush-angular-module)
-
-> 
+# Slush-angular-module
 
 
 ## Getting Started
 
-Install `slush-slush-angular-module` globally:
+Install `slush-angular-module` globally:
 
 ```bash
-$ npm install -g slush-slush-angular-module
+$ npm install -g slush-angular-module
 ```
 
 ### Usage
 
-Create a new folder for your project:
+Create or goto your project modules folder:
 
 ```bash
-$ mkdir my-slush-slush-angular-module
+$ mkdir modules-folder
 ```
 
 Run the generator from within the new folder:
 
 ```bash
-$ cd my-slush-slush-angular-module && slush slush-angular-module
+$ cd modules-folder && slush slush-angular-module
 ```
 
 ## Getting To Know Slush
@@ -35,10 +33,10 @@ To find out more about Slush, check out the [documentation](https://github.com/s
 
 ## Contributing
 
-See the [CONTRIBUTING Guidelines](https://github.com/poppahorse/slush-slush-angular-module/blob/master/CONTRIBUTING.md)
+See the [CONTRIBUTING Guidelines](https://github.com/poppahorse/slush-angular-module/blob/master/CONTRIBUTING.md)
 
 ## Support
-If you have any problem or suggestion please open an issue [here](https://github.com/poppahorse/slush-slush-angular-module/issues).
+If you have any problem or suggestion please open an issue [here](https://github.com/poppahorse/slush-angular-module/issues).
 
 ## License 
 
