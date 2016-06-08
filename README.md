@@ -11,7 +11,7 @@ $ npm install -g slush-angular-module
 
 ### Usage
 
-Create a new folder for your project:
+Create or goto your project modules folder:
 
 ```bash
 $ mkdir modules-folder
