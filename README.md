@@ -14,13 +14,13 @@ $ npm install -g slush-angular-module
 Create a new folder for your project:
 
 ```bash
-$ mkdir my-slush-angular-module
+$ mkdir modules-folder
 ```
 
 Run the generator from within the new folder:
 
 ```bash
-$ cd my-slush-angular-module && slush slush-angular-module
+$ cd modules-folder && slush slush-angular-module
 ```
 
 ## Getting To Know Slush
