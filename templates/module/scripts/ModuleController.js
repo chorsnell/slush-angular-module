@@ -1,5 +1,5 @@
 angular.module('<%= name %>')
-	.controller('<%= nameCap %>Controller', function($scope, Restangular) {
+	.controller('<%= contNameCap %>Controller', function($scope, Restangular) {
 
 
 	});
