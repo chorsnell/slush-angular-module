@@ -69,7 +69,7 @@ gulp.task('default', function (done) {
             }
             // if script
             if (file.dirname === 'scripts' && file.extname === '.js') {
-                file.basename = answers.contName+'Controller';
+                file.basename = answers.contNameCap+'Controller';
             }
             // if view
             if (file.dirname === 'views' && file.extname === '.html') {
