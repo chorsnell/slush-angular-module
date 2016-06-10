@@ -8,8 +8,8 @@ var gulp = require('gulp'),
 
 gulp.task('default', function (done) {
   inquirer.prompt([
-    {type: 'input', name: 'name', message: 'Give your module a name', default: gulp.args[0]}, // Get app name from arguments by default
-    {type: 'input', name: 'contName', message: 'Give your controller a name', default: (typeof gulp.args[1] != 'undefined') ? gulp.args[1] : gulp.args[0]}, // Get app name from arguments by default
+    {type: 'input', name: 'name', message: 'Give your module a name (hyphenated)', default: gulp.args[0]}, // Get app name from arguments by default
+    {type: 'input', name: 'contName', message: 'Give your controller a name (hyphenated)', default: (typeof gulp.args[1] != 'undefined') ? gulp.args[1] : gulp.args[0]}, // Get app name from arguments by default
     {type: 'list', name: 'type', message: 'What would you like to generate?', default: 'controller', choices: ['controller', 'module']},
     {type: 'confirm', name: 'moveon', message: 'Continue?', default: 'y'}
   ],
@@ -25,6 +25,8 @@ gulp.task('default', function (done) {
         //console.log(value);
         answers[key] = value;
         answers[key+'Cap'] = _.capitalize(value);
+        answers[key+'LCamel'] = _.camelCase(value);
+        answers[key+'UCamel'] = _.upperFirst(answers[key+'LCamel']);
     });
     //console.log(answers);
 
@@ -40,7 +42,7 @@ gulp.task('default', function (done) {
         .pipe(rename(function(file) {
             // if script
             if (file.dirname === 'scripts' && file.extname === '.js') {
-                file.basename = answers.contNameCap+'Controller';
+                file.basename = answers.contNameUCamel+'Controller';
             }
             // if view
             if (file.dirname === 'views' && file.extname === '.html') {
@@ -65,11 +67,11 @@ gulp.task('default', function (done) {
         .pipe(rename(function(file) {
             // if root controller
             if (file.dirname === '.' && file.extname === '.js') {
-                file.basename = answers.name;
+                file.basename = answers.nameLCamel;
             }
             // if script
             if (file.dirname === 'scripts' && file.extname === '.js') {
-                file.basename = answers.contNameCap+'Controller';
+                file.basename = answers.contNameUCamel+'Controller';
             }
             // if view
             if (file.dirname === 'views' && file.extname === '.html') {

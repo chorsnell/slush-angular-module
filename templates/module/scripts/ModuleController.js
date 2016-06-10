@@ -1,5 +1,5 @@
-angular.module('<%= name %>')
-	.controller('<%= contNameCap %>Controller', function($scope, Restangular) {
+angular.module('<%= nameLCamel %>')
+	.controller('<%= contNameUCamel %>Controller', function($scope, Restangular) {
 
 
 	});
